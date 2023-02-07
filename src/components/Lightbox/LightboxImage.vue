@@ -21,10 +21,8 @@ export default {
       style: {},
     };
   },
-  mounted() {
-    // Dès que le composant est monter il va falloir que je recupère les dimensions de l'image avant de l'inserer dans le DOM.
-    let image = new Image();
-    image.onload = () => {
+  methods: {
+    resizeImage(image) {
       let width = image.width;
       let height = image.height;
       const heightScreen = window.innerHeight;
@@ -40,13 +38,27 @@ export default {
           height = heightScreen - 50;
           width = height * ratio;
         }
+        this.style = {
+          width: width + "px",
+          height: height + "px",
+          top: ((heightScreen - height) * 0.5) / 2 + "px",
+          left: ((widthScreen - width) * 0.5) / 2 + "px",
+        };
       }
-      image.width = width;
-      image.height = height;
-      this.style = { width: width + "px", height: height + "px" };
+    },
+  },
+  mounted() {
+    // Dès que le composant est monter il va falloir que je recupère les dimensions de l'image avant de l'inserer dans le DOM.
+    let image = new Image(); // Notre image
+    image.onload = () => {
+      this.resizeImage(image);
       this.loading = false;
       this.src = this.image;
     };
+    window.addEventListener("resize", () => {
+      console.log("Resize");
+      this.resizeImage(image);
+    });
     image.src = this.image;
   },
 };
