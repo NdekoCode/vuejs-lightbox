@@ -1,8 +1,5 @@
 <template>
   <div id="app">
-    <a href="https://loremflickr.com/800/600/futurama?lock=1" v-lightbox>
-      <img src="https://loremflickr.com/150/150/futurama?lock=1" alt="Image" />
-    </a>
     <LightBox></LightBox>
   </div>
 </template>
