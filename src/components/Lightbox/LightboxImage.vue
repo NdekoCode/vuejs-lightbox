@@ -1,6 +1,7 @@
 <template>
   <div class="">
-    <img :src="image" alt="Image" />
+    <div v-if="loading">Loading...</div>
+    <img :src="src" alt="Image" class="lightbox__image" :style="style" />
   </div>
 </template>
 
@@ -11,6 +12,42 @@ export default {
     image: {
       type: String,
     },
+  },
+  data() {
+    return {
+      // Va permettre de savoir si l'image est deja charger
+      loading: true,
+      src: false,
+      style: {},
+    };
+  },
+  mounted() {
+    // Dès que le composant est monter il va falloir que je recupère les dimensions de l'image avant de l'inserer dans le DOM.
+    let image = new Image();
+    image.onload = () => {
+      let width = image.width;
+      let height = image.height;
+      const heightScreen = window.innerHeight;
+      const widthScreen = window.innerWidth;
+      if (width > widthScreen || height > heightScreen) {
+        let ratio = width / height;
+        let ratioScreen = widthScreen / heightScreen;
+        // Si le ratio de l'image est superieur au ratio de la fenetre, cela veut dire que c'est que la largeur de l'image qui depasse alors il faut fixer la largeur de l'image à la largeur de la fenetre Ensuite on doit faire en sorte que la hauteur garde le systeme de ratio par rapport à la nouvelle largeur de l'image
+        if (ratio > ratioScreen) {
+          width = widthScreen - 50;
+          height = width / ratio;
+        } else {
+          height = heightScreen - 50;
+          width = height * ratio;
+        }
+      }
+      image.width = width;
+      image.height = height;
+      this.style = { width: width + "px", height: height + "px" };
+      this.loading = false;
+      this.src = this.image;
+    };
+    image.src = this.image;
   },
 };
 </script>

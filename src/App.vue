@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <a
-      :href="`https://loremflickr.com/800/600/futurama?lock=${item}`"
+      :href="`https://loremflickr.com/1200/900/futurama?lock=${item}`"
       v-lightbox
       v-for="(item, key) in 9"
       :key="key"
