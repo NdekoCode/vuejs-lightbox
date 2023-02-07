@@ -1,11 +1,12 @@
 <template>
   <div class="lightbox" v-if="image">
-    <img :src="image" alt="Image" />
+    <LightboxImage :image="image" />
   </div>
 </template>
 
 <script>
 import "./LightboxDirective";
+import LightboxImage from "./LightboxImage";
 import store from "./LightboxStore";
 export default {
   name: "LightBox",
@@ -14,6 +15,7 @@ export default {
       state: store.state,
     };
   },
+  components: { LightboxImage },
   computed: {
     url() {
       return this.state.images[this.state.index] || "??";
