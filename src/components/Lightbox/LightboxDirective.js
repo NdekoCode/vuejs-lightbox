@@ -2,12 +2,13 @@ import Vue from "vue";
 import store from "./LightboxStore";
 Vue.directive("lightbox", {
   bind(el) {
+    const indexImage = store.addImage(el.getAttribute("href"));
     el.addEventListener("click", (e) => {
       e.preventDefault();
-      store.state.image = el.getAttribute("href");
-      console.log(store.state);
-      // On doit ouvrir l'image et recuperer son attribut HRF
-      //   open(el.getAttribute("href"));
+
+      // On doit ouvrir l'image et recuperer son attribut HREF
+      store.open(indexImage);
+      console.log(store.state.images[0], indexImage);
     });
   },
 });

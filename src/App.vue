@@ -1,18 +1,26 @@
 <template>
   <div id="app">
-    <a href="https://loremflickr.com/800/600/futurama?lock=1" v-lightbox>
-      <img src="https://loremflickr.com/150/150/futurama?lock=1" alt="Image" />
+    <a
+      :href="`https://loremflickr.com/1200/900/futurama?lock=${item}`"
+      v-lightbox
+      v-for="(item, key) in 9"
+      :key="key"
+    >
+      <img
+        :src="`https://loremflickr.com/150/150/futurama?lock=${item}`"
+        alt="Image"
+      />
     </a>
-    <LightBox></LightBox>
+    <Lightbox></Lightbox>
   </div>
 </template>
 
 <script>
-import LightBox from "./components/Lightbox/LightBox";
+import Lightbox from "./components/Lightbox/Lightbox";
 export default {
   name: "App",
   components: {
-    LightBox,
+    Lightbox,
   },
 };
 </script>
