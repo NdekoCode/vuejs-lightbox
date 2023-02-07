@@ -1,19 +1,20 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <a href="https://loremflickr.com/800/600/futurama?lock=1" v-lightbox>
+      <img src="https://loremflickr.com/150/150/futurama?lock=1" alt="Image" />
+    </a>
+    <LightBox></LightBox>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
+import LightBox from "./components/Lightbox/LightBox";
 export default {
-  name: 'App',
+  name: "App",
   components: {
-    HelloWorld
-  }
-}
+    LightBox,
+  },
+};
 </script>
 
 <style>
@@ -21,8 +22,5 @@ export default {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
 }
 </style>
