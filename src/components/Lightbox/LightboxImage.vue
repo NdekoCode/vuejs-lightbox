@@ -1,5 +1,5 @@
 <template>
-  <div class="">
+  <div class="" @click.stop>
     <div v-if="loading">Loading...</div>
     <img :src="src" alt="Image" class="lightbox__image" :style="style" />
   </div>
@@ -55,6 +55,7 @@ export default {
       this.loading = false;
       this.src = this.image;
     };
+    // Quand on redimensionne la fenetre on recalcule alors la taille de l'image
     window.addEventListener("resize", () => {
       console.log("Resize");
       this.resizeImage(image);

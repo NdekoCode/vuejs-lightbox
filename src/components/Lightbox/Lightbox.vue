@@ -1,5 +1,5 @@
 <template>
-  <div class="lightbox" v-if="image">
+  <div class="lightbox" v-if="image" @click="close">
     <LightboxImage :image="image" />
   </div>
 </template>
@@ -14,6 +14,11 @@ export default {
     return {
       state: store.state,
     };
+  },
+  methods: {
+    close() {
+      store.state.index = false;
+    },
   },
   components: { LightboxImage },
   computed: {
