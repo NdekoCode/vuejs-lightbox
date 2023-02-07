@@ -1,17 +1,6 @@
 <template>
-  <div>
-    <a
-      :href="`https://loremflickr.com/800/600/futurama?lock=${item}`"
-      v-lightbox
-      v-for="(item, key) in 9"
-      :key="key"
-    >
-      <img
-        :src="`https://loremflickr.com/150/150/futurama?lock=${item}`"
-        alt="Image"
-      />
-    </a>
-    {{ url }}
+  <div class="lightbox" v-if="image">
+    <img :src="image" alt="Image" />
   </div>
 </template>
 
@@ -29,9 +18,15 @@ export default {
     url() {
       return this.state.images[this.state.index] || "??";
     },
+    image() {
+      if (this.state.index !== false) {
+        return this.state.images[this.state.index];
+      }
+      return null;
+    },
   },
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss" src="./lightbox.scss" scoped>
 </style>
