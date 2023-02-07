@@ -6,12 +6,18 @@
 
 <script>
 import "./LightboxDirective";
+import store from "./LightboxStore";
 export default {
   name: "LightBox",
   data() {
     return {
-      url: "??",
+      state: store.state,
     };
+  },
+  computed: {
+    url() {
+      return this.state.image || "??";
+    },
   },
 };
 </script>
