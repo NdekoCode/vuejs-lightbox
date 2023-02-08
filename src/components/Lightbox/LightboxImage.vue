@@ -1,7 +1,7 @@
 <template>
   <div @click.stop>
-    <div v-if="loading">Loading...</div>
-    <img :src="src" alt="Image" class="lightbox__image" :style="style" />
+    <div v-if="loading" class="lightbox__loading"></div>
+    <img v-else :src="src" alt="Image" class="lightbox__image" :style="style" />
   </div>
 </template>
 

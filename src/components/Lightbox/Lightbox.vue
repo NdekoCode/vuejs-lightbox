@@ -36,5 +36,5 @@ export default {
 };
 </script>
 
-<style lang="scss" src="./lightbox.scss" scoped>
+<style lang="scss" src="./lightbox.scss">
 </style>

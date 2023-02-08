@@ -44,3 +44,49 @@ img {
     }
 
 }
+
+.lightbox__loading {
+    position        : fixed;
+    left            : 50%;
+    top             : 50%;
+    padding         : 10px;
+    margin-left     : -20px;
+    margin-right    : -20px;
+    height          : 50px;
+    width           : 50px;
+    border-radius   : 50%;
+    background-color: rgba(#000, 0.5);
+    display         : flex;
+    align-items     : center;
+    justify-content : center;
+
+    &::after {
+        content         : "";
+        display         : inline-block;
+        width           : 30px;
+        height          : 30px;
+        background-color: #fff;
+        border-radius   : 50%;
+        animation       : Lightbox-loading 0.5s ease infinite;
+
+    }
+
+}
+
+@keyframes Lightbox-loading {
+    0% {
+        opacity  : 0.5;
+        transform: scale(.75);
+    }
+
+    50% {
+
+        opacity  : 1;
+        transform: scale(1);
+    }
+
+    100% {
+        opacity  : 0.5;
+        transform: scale(.75);
+    }
+}
