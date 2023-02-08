@@ -1,5 +1,5 @@
 <template>
-  <div class="" @click.stop>
+  <div @click.stop>
     <div v-if="loading">Loading...</div>
     <img :src="src" alt="Image" class="lightbox__image" :style="style" />
   </div>

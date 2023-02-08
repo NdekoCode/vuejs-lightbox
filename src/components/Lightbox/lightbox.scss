@@ -6,6 +6,11 @@
     box-sizing: border-box;
 }
 
+button {
+    border: none;
+    cursor: pointer;
+}
+
 .lightbox {
     position        : fixed;
     inset           : 0;
@@ -21,4 +26,21 @@ img {
     display  : block;
     max-width: 100%;
     height   : auto;
+}
+
+.lightbox__close {
+    position       : fixed;
+    top            : 20px;
+    right          : 20px;
+    width          : 50px;
+    height         : 50px;
+    color          : #333;
+    background     : url('../../assets/images/icons/close.svg') transparent no-repeat;
+    background-size: 50px 50px;
+    transition     : transform 0.35s;
+
+    &:hover {
+        transform: scale(1.2);
+    }
+
 }
