@@ -1,6 +1,9 @@
 <template>
   <div class="lightbox" v-if="image" @click="close">
-    <LightboxImage :image="image" />
+    <transition name="lightbox-fade">
+      <!-- A chaque fois que la valeur de l'image change il considere que il y a un changement de composant du coup il créer un nouveau composant et donc une nouvelle image, ce qui nous fait un nouveau chargement  -->
+      <LightboxImage :image="image" :key="image" />
+    </transition>
     <div class="lightbox__close-container">
       <button class="lightbox__close" @click.prevent="close">
         <svg
