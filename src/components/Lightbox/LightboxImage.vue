@@ -1,7 +1,16 @@
 <template>
   <div @click.stop>
     <div v-if="loading" class="lightbox__loading"></div>
-    <img v-else :src="src" alt="Image" class="lightbox__image" :style="style" />
+    <transition name="lightbox-fade">
+      <!-- La clé à observer c'est "src",dès que "src" est disponible il faut que tu lance l'animation  -->
+      <img
+        :src="src"
+        :alt="!loading ? 'Image' : ''"
+        class="lightbox__image"
+        :style="style"
+        :key="src"
+      />
+    </transition>
   </div>
 </template>
 
