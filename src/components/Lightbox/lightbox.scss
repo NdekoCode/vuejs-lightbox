@@ -182,7 +182,7 @@ img {
 
 // Pour l'element qui entre
 .lightbox-prev-enter-active {
-    transition-delay: 0.15s;
+    transition-delay: 0.35s;
 }
 
 .lightbox-prev-enter {
@@ -191,10 +191,8 @@ img {
 }
 
 .lightbox-prev-leave-active {
-    // Pour l'element qui entre
-    transition-delay: 0.35s;
-    opacity         : 0;
-    transform       : translateX(100px);
+    opacity  : 0;
+    transform: translateX(100px);
 }
 
 /* ANIMATION*/
