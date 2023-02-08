@@ -1,6 +1,6 @@
 <template>
   <div class="lightbox" v-if="image" @click="close">
-    <transition name="lightbox-fade">
+    <transition :name="transition">
       <!-- A chaque fois que la valeur de l'image change il considere que il y a un changement de composant du coup il créer un nouveau composant et donc une nouvelle image, ce qui nous fait un nouveau chargement  -->
       <LightboxImage :image="image" :key="image" />
     </transition>
@@ -71,22 +71,27 @@ export default {
   data() {
     return {
       state: store.state,
+      direction: "next",
     };
   },
   methods: {
     close() {
-      console.log("Lol");
       store.state.index = false;
     },
     next() {
+      this.direction = "next";
       store.next();
     },
     prev() {
+      this.direction = "prev";
       store.prev();
     },
   },
   components: { LightboxImage },
   computed: {
+    transition() {
+      return "lightbox-" + this.direction;
+    },
     url() {
       return this.state.images[this.state.index] || "??";
     },
