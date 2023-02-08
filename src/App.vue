@@ -1,16 +1,18 @@
 <template>
   <div id="app">
-    <a
-      :href="`https://loremflickr.com/1200/900/futurama?lock=${item}`"
-      v-lightbox
-      v-for="(item, key) in 9"
-      :key="key"
-    >
-      <img
-        :src="`https://loremflickr.com/150/150/futurama?lock=${item}`"
-        alt="Image"
-      />
-    </a>
+    <div class="lightbox__container">
+      <div class="lightbox__item" v-for="(item, key) in 12" :key="key">
+        <a
+          :href="`https://loremflickr.com/1200/900/futurama?lock=${item}`"
+          v-lightbox
+        >
+          <img
+            :src="`https://loremflickr.com/200/200/futurama?lock=${item}`"
+            alt="Image"
+          />
+        </a>
+      </div>
+    </div>
     <Lightbox></Lightbox>
   </div>
 </template>
