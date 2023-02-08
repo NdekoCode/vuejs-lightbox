@@ -64,12 +64,15 @@ export default {
       this.loading = false;
       this.src = this.image;
     };
-    // Quand on redimensionne la fenetre on recalcule alors la taille de l'image
-    window.addEventListener("resize", () => {
-      console.log("Resize");
+    this.resizeEvent = () => {
       this.resizeImage(image);
-    });
+    };
+    // Quand on redimensionne la fenetre on recalcule alors la taille de l'image
+    window.addEventListener("resize", this.resizeEvent);
     image.src = this.image;
+  },
+  destroyed() {
+    window.removeEventListener("resize", this.resizeEvent);
   },
 };
 </script>
