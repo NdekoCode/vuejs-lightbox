@@ -7,8 +7,8 @@
 }
 
 button {
-    border: none;
-    cursor: pointer;
+    padding: 8px;
+    cursor : pointer;
 }
 
 svg {
@@ -30,6 +30,24 @@ img {
     display  : block;
     max-width: 100%;
     height   : auto;
+}
+
+.container {
+    max-width: 1024px;
+    margin   : 0 auto;
+}
+
+.mt-5 {
+    margin-top: 5 * 0.5rem;
+}
+
+.mb-5 {
+    margin-bottom: 5 * 0.5rem;
+}
+
+.my-5 {
+    margin-top   : 5 * 0.5rem;
+    margin-bottom: 5 * 0.5rem;
 }
 
 .lightbox__close-container {
@@ -171,9 +189,11 @@ img {
     transform: translateX(-100px);
 }
 
-.lightbox-prev-leave {
-    opacity  : 0;
-    transform: translateX(100px);
+.lightbox-prev-leave-active {
+    // Pour l'element qui entre
+    transition-delay: 0.35s;
+    opacity         : 0;
+    transform       : translateX(100px);
 }
 
 /* ANIMATION*/
@@ -196,7 +216,7 @@ img {
 
 // Pour l'element qui entre
 .lightbox-next-enter-active {
-    transition-delay: 0.15s;
+    transition-delay: 0.35s;
 }
 
 .lightbox-next-enter {
@@ -204,7 +224,7 @@ img {
     transform: translateX(100px);
 }
 
-.lightbox-next-leave {
+.lightbox-next-leave-active {
     opacity  : 0;
     transform: translateX(-100px);
 }

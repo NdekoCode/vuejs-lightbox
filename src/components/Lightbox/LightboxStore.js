@@ -29,7 +29,6 @@ class LightboxStore {
     ) {
       this.state.index = 0;
     }
-    console.log(this.state.images[this.state.index]);
   }
   prev() {
     this.state.index -= 1;
@@ -39,7 +38,9 @@ class LightboxStore {
     ) {
       this.state.index = this.state.images.length - 1;
     }
-    console.log(this.state.images[this.state.index]);
+  }
+  remove(url) {
+    this.state.images = this.state.images.filter((image) => image.url !== url);
   }
 }
 export default new LightboxStore();
