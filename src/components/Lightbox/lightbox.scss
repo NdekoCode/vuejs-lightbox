@@ -6,12 +6,21 @@
     box-sizing: border-box;
 }
 
+button {
+    padding: 8px;
+    cursor : pointer;
+}
+
+svg {
+    fill: currentColor;
+}
+
 .lightbox {
     position        : fixed;
     inset           : 0;
     width           : 100%;
     height          : 100%;
-    background-color: rgba(#fff, 0.9);
+    background-color: rgba(#000, 0.7);
     display         : flex;
     align-items     : center;
     justify-content : center;
@@ -21,4 +30,219 @@ img {
     display  : block;
     max-width: 100%;
     height   : auto;
+}
+
+.container {
+    max-width: 1024px;
+    margin   : 0 auto;
+}
+
+.mt-5 {
+    margin-top: 5 * 0.5rem;
+}
+
+.mb-5 {
+    margin-bottom: 5 * 0.5rem;
+}
+
+.my-5 {
+    margin-top   : 5 * 0.5rem;
+    margin-bottom: 5 * 0.5rem;
+}
+
+.lightbox__close-container {
+
+    position        : fixed;
+    width           : 40px;
+    height          : 40px;
+    top             : 175px;
+    right           : 15px;
+    background-color: rgba(#000, 0.3);
+    display         : flex;
+    align-items     : center;
+    justify-content : center;
+
+
+    @media only screen and(min-width:320px) {
+
+        top   : 130px;
+        width : 50px;
+        height: 50px;
+    }
+
+    @media only screen and(min-width:480px) {
+
+        top   : 50px;
+        width : 40px;
+        height: 40px;
+    }
+
+    @media only screen and(min-width:740px) {
+
+        top   : 20px;
+        width : 40px;
+        height: 40px;
+    }
+
+    @media only screen and(min-width:980px) {
+
+        top   : 20px;
+        width : 60px;
+        height: 60px;
+    }
+
+}
+
+.lightbox__close {
+    display         : block;
+    width           : 40px;
+    height          : 40px;
+    color           : #fff;
+    background-color: transparent;
+    transition      : transform 0.35s;
+
+    &:hover {
+        transform: scale(1.2);
+    }
+
+}
+
+.lightbox__loading {
+    position        : fixed;
+    left            : 50%;
+    top             : 50%;
+    padding         : 10px;
+    margin-left     : -20px;
+    margin-right    : -20px;
+    height          : 50px;
+    width           : 50px;
+    border-radius   : 50%;
+    background-color: rgba(#000, 0.5);
+    display         : flex;
+    align-items     : center;
+    justify-content : center;
+
+    &::after {
+        content         : "";
+        display         : inline-block;
+        width           : 30px;
+        height          : 30px;
+        background-color: #fff;
+        border-radius   : 50%;
+        animation       : Lightbox-loading 0.5s ease infinite;
+
+    }
+
+}
+
+.lightbox__container {
+    display   : flex;
+    flex-wrap : wrap;
+    gap       : 10px;
+    max-width : 1024px;
+    margin    : 0 auto;
+    margin-top: 50px;
+}
+
+.lightbox__btn-container {
+    position       : fixed;
+    left           : 40px;
+    right          : 40px;
+    top            : 50%;
+    transform      : translateY(-50%);
+    display        : flex;
+    justify-content: space-between;
+    align-items    : center;
+}
+
+.lightbox__btn {
+    width           : 40px;
+    height          : 40px;
+    background-color: rgba(#000, 0.3);
+    color           : #fff;
+    transition      : transform 0.35s;
+
+    &:hover {
+        transform: scale(1.2);
+    }
+
+    @media only screen and(min-width:980px) {
+
+        width : 60px;
+        height: 60px;
+    }
+}
+
+.lightbox-prev-enter-active,
+.lightbox-prev-leave-active {
+    opacity   : 1;
+    transition: transform 0.35s, opacity 0.35s;
+}
+
+// Pour l'element qui entre
+.lightbox-prev-enter-active {
+    transition-delay: 0.15s;
+}
+
+.lightbox-prev-enter {
+    opacity  : 0;
+    transform: translateX(-100px);
+}
+
+.lightbox-prev-leave-active {
+    // Pour l'element qui entre
+    transition-delay: 0.35s;
+    opacity         : 0;
+    transform       : translateX(100px);
+}
+
+/* ANIMATION*/
+.lightbox-fade-enter-active,
+.lightbox-fade-leave-active {
+    transition: opacity 0.35s, transform 0.35s;
+}
+
+.lightbox-fade-enter,
+.lightbox-fade-leave-active {
+    opacity  : 0;
+    transform: scalse(0.75);
+}
+
+.lightbox-next-enter-active,
+.lightbox-next-leave-active {
+    opacity   : 1;
+    transition: transform 0.35s, opacity 0.35s;
+}
+
+// Pour l'element qui entre
+.lightbox-next-enter-active {
+    transition-delay: 0.35s;
+}
+
+.lightbox-next-enter {
+    opacity  : 0;
+    transform: translateX(100px);
+}
+
+.lightbox-next-leave-active {
+    opacity  : 0;
+    transform: translateX(-100px);
+}
+
+@keyframes Lightbox-loading {
+    0% {
+        opacity  : 0.5;
+        transform: scale(.75);
+    }
+
+    50% {
+
+        opacity  : 1;
+        transform: scale(1);
+    }
+
+    100% {
+        opacity  : 0.5;
+        transform: scale(.75);
+    }
 }

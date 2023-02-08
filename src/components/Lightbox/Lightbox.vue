@@ -1,6 +1,64 @@
 <template>
   <div class="lightbox" v-if="image" @click="close">
-    <LightboxImage :image="image" />
+    <transition :name="transition">
+      <!-- A chaque fois que la valeur de l'image change il considere que il y a un changement de composant du coup il créer un nouveau composant et donc une nouvelle image, ce qui nous fait un nouveau chargement  -->
+      <LightboxImage :image="image" :key="image" />
+    </transition>
+    <div class="lightbox__close-container">
+      <button class="lightbox__close" @click.prevent="close">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="ionicon"
+          viewBox="0 0 512 512"
+        >
+          <title>Close</title>
+          <path
+            fill="currentColor"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="25"
+            d="M368 368L144 144M368 144L144 368"
+          />
+        </svg>
+      </button>
+    </div>
+    <div class="lightbox__btn-container" @click.stop>
+      <button class="lightbox__btn lightbox__prev" @click.prevent="prev">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="ionicon"
+          viewBox="0 0 512 512"
+        >
+          <title>Chevron Back</title>
+          <path
+            fill="none"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="25"
+            d="M328 112L184 256l144 144"
+          />
+        </svg>
+      </button>
+      <button class="lightbox__btn lightbox__next" @click.prevent="next">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="ionicon"
+          viewBox="0 0 512 512"
+        >
+          <title>Chevron Forward</title>
+          <path
+            fill="none"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="25"
+            d="M184 112l144 144-144 144"
+          />
+        </svg>
+      </button>
+    </div>
   </div>
 </template>
 
@@ -13,15 +71,27 @@ export default {
   data() {
     return {
       state: store.state,
+      direction: "next",
     };
   },
   methods: {
     close() {
       store.state.index = false;
     },
+    next() {
+      this.direction = "next";
+      store.next();
+    },
+    prev() {
+      this.direction = "prev";
+      store.prev();
+    },
   },
   components: { LightboxImage },
   computed: {
+    transition() {
+      return "lightbox-" + this.direction;
+    },
     url() {
       return this.state.images[this.state.index] || "??";
     },
@@ -35,5 +105,5 @@ export default {
 };
 </script>
 
-<style lang="scss" src="./lightbox.scss" scoped>
+<style lang="scss" src="./lightbox.scss">
 </style>

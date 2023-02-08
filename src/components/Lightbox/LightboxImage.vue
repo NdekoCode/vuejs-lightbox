@@ -1,7 +1,16 @@
 <template>
-  <div class="" @click.stop>
-    <div v-if="loading">Loading...</div>
-    <img :src="src" alt="Image" class="lightbox__image" :style="style" />
+  <div @click.stop>
+    <div v-if="loading" class="lightbox__loading"></div>
+    <transition name="lightbox-fade">
+      <!-- La clé à observer c'est "src",dès que "src" est disponible il faut que tu lance l'animation  -->
+      <img
+        :src="src"
+        :alt="!loading ? 'Image' : ''"
+        class="lightbox__image"
+        :style="style"
+        :key="src"
+      />
+    </transition>
   </div>
 </template>
 
@@ -55,12 +64,15 @@ export default {
       this.loading = false;
       this.src = this.image;
     };
-    // Quand on redimensionne la fenetre on recalcule alors la taille de l'image
-    window.addEventListener("resize", () => {
-      console.log("Resize");
+    this.resizeEvent = () => {
       this.resizeImage(image);
-    });
+    };
+    // Quand on redimensionne la fenetre on recalcule alors la taille de l'image
+    window.addEventListener("resize", this.resizeEvent);
     image.src = this.image;
+  },
+  destroyed() {
+    window.removeEventListener("resize", this.resizeEvent);
   },
 };
 </script>
